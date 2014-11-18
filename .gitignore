@@ -1,4 +1,5 @@
 node_modules
 .idea/*
+.sessions/
 client/sessions/
 client/scripts/bower_components/*
