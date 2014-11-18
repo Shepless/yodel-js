@@ -23,7 +23,7 @@ router.get('/session', function (req, res) {
 });
 
 router.post('/session', function (req, res) {
-    var session = SessionFactory.create(req.get('user-agent'), req.ip);
+    var session = SessionFactory.create(req.body.name, req.body.bridgeType);
     BridgeFactory.create(session);
     res.send(session);
 });

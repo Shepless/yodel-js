@@ -5,8 +5,16 @@
         .controller('dashboard-controller', ['$scope', 'session-service', 'sessions', function ($scope, sessionService, sessions) {
             $scope.sessions = sessions;
 
+            var lastBridgeType;
+
             $scope.createSession = function () {
-                sessionService.create().then(function (newSession) {
+                if (lastBridgeType) {
+                    lastBridgeType = 0;
+                } else {
+                    lastBridgeType = 1;
+                }
+
+                sessionService.create('Foo Session', lastBridgeType).then(function (newSession) {
                     $scope.sessions.push(newSession);
                 });
             }

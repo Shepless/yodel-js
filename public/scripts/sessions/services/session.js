@@ -3,8 +3,11 @@
 
     angular.module('yodel.sessions')
         .service('session-service', ['$http', 'session-model', function ($http, SessionModel) {
-            this.create = function () {
-                return $http.post('/session').then(function (response) {
+            this.create = function (name, bridgeType) {
+                return $http.post('/session', {
+                    name: name,
+                    bridgeType: bridgeType
+                }).then(function (response) {
                     return new SessionModel(response.data);
                 });
             };

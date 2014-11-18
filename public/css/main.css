@@ -1,0 +1,17 @@
+.logo-icon {
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    margin: 0 10px 0 0;
+    vertical-align: text-top;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.logo-icon.angular {
+    background-image: url('../images/angular-icon.png');
+}
+
+.logo-icon.backbone {
+    background-image: url('../images/backbone-icon.png');
+}

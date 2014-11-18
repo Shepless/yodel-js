@@ -2,6 +2,7 @@
 
 var path = require('path'),
     express = require('express'),
+    bodyParser = require('body-parser'),
     app = express(),
     server = require('http').Server(app),
     sessionRouter = require('./routes/session'),
@@ -10,6 +11,7 @@ var path = require('path'),
 
 SocketFactory.init(server);
 
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.use('/', sessionRouter);

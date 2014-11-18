@@ -5,10 +5,12 @@ var uuid = require('node-uuid'),
     SocketFactory = require('../factories/socket-factory'),
     Client = require('./client');
 
-function Session () {
+function Session (name, bridgeType) {
     var me = this;
 
     me.id = uuid.v4();
+    me.name = name;
+    me.bridgeType = bridgeType;
     me.port = 3000;
     me.serverIp = ip.address();
     me.created = new Date().toString();

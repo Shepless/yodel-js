@@ -7,15 +7,21 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h1 class="panel-title">
-            {{session.id}}
+            <span class="logo-icon"
+                  ng-class="{ angular: session.bridgeType === 0, backbone: session.bridgeType === 1 }"></span>{{session.name}}
         </h1>
     </div>
     <div class="panel-body">
-        Created on {{session.created}}
-        <p>
-            <code>&lt;script src="{{'http://' + session.serverIp + ':' + session.port + '/sessions/' + session.id +
-                '.js'}}"&gt;&lt;/script&gt;</code>
-        </p>
+        <h3><span class="glyphicon glyphicon-info-sign"></span> Information</h3>
+        <hr/>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Session ID: {{session.id}}
+            </li>
+            <li class="list-group-item">
+                Created on: {{session.created}}
+            </li>
+        </ul>
     </div>
 </div>
 <div class="row">
