@@ -16,10 +16,11 @@ Client.prototype.addMessage = function(message) {
     var me = this;
 
     var newMessage = _.extend(message, {
-        clientId: me.id
+        clientId: me.id,
+        timestamp: new Date().toString()
     });
 
-    me.messages.push(newMessage);
+    me.messages.unshift(newMessage);
 
     return newMessage;
 };

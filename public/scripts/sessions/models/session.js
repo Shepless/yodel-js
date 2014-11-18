@@ -7,6 +7,7 @@
                 var me = this;
 
                 angular.extend(me, json);
+
                 me.isConnected = false;
                 me.socket = webSocketFactory.create(me.id);
 

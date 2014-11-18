@@ -11,6 +11,8 @@ function Session () {
     me.id = uuid.v4();
     me.port = 3000;
     me.serverIp = ip.address();
+    me.created = new Date().toString();
+    me.lastActive = me.created;
     me.clients = [];
 
     var socket = SocketFactory.create(me.id);
@@ -20,10 +22,7 @@ function Session () {
             clientId = socketInstance.request._query.clientId;
 
         if (isClient && !clientId) {
-            console.log(socketInstance.request.headers['user-agent']);
-
             var newClient = new Client(me.id, socketInstance.request);
-
             me.clients.push(newClient);
             socket.emit('new_client', newClient);
         }
