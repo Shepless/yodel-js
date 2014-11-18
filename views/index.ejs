@@ -1,15 +1,15 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Console</title>
+    <title>Yodel.js</title>
     <link href="scripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body ng-app="node-console">
+<body ng-app="yodel">
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Node Console</a>
+            <a class="navbar-brand" href="#">Yodel.js</a>
         </div>
     </div>
 </nav>
@@ -20,11 +20,15 @@
 <script src="scripts/bower_components/angular/angular.min.js"></script>
 <script src="scripts/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="scripts/bower_components/angular-socket-io/socket.min.js"></script>
+
 <script src="scripts/_app.js"></script>
 <script src="scripts/_config.js"></script>
-<script src="scripts/services/session.js"></script>
-<script src="scripts/controllers/home.js"></script>
-<script src="scripts/models/session.js"></script>
-<script src="scripts/models/message-list.js"></script>
+<script src="scripts/dashboard/_app.js"></script>
+<script src="scripts/dashboard/controllers/dashboard.js"></script>
+<script src="scripts/sessions/_app.js"></script>
+<script src="scripts/sessions/models/session.js"></script>
+<script src="scripts/sessions/services/session.js"></script>
+<script src="scripts/sockets/_app.js"></script>
+<script src="scripts/sockets/services/web-socket-factory.js"></script>
 </body>
 </html>

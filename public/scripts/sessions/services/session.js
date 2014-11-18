@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('node-console')
-        .service('session', ['$http', 'session-model', function ($http, SessionModel) {
+    angular.module('yodel.sessions')
+        .service('session-service', ['$http', 'session-model', function ($http, SessionModel) {
             this.create = function () {
                 return $http.post('/session').then(function (response) {
                     return new SessionModel(response.data);

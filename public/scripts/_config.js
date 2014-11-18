@@ -1,18 +1,18 @@
 (function () {
     'use strict';
 
-    angular.module('node-console')
+    angular.module('yodel')
         .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
             $urlRouterProvider.otherwise('/');
 
             $stateProvider
-                .state('home', {
+                .state('dashboard', {
                     url: '',
-                    templateUrl: 'partials/home.html',
-                    controller: 'home-controller',
+                    templateUrl: 'partials/dashboard.html',
+                    controller: 'dashboard-controller',
                     resolve: {
-                        sessions: ['session', function(session) {
-                            return session.getAll();
+                        sessions: ['session-service', function(sessionService) {
+                            return sessionService.getAll();
                         }]
                     }
                 })

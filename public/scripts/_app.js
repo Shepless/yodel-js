@@ -1,5 +1,5 @@
 (function () {
     'use strict';
 
-    angular.module('node-console', ['ng', 'ui.router', 'btford.socket-io']);
+    angular.module('yodel', ['ng', 'ui.router', 'yodel.dashboard']);
 })();
