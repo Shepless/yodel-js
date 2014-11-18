@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Console</title>
+    <link href="scripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body ng-app="node-console">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Node Console</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div ui-view></div>
+</div>
+<script src="scripts/bower_components/socket.io-client/socket.io.js"></script>
+<script src="scripts/bower_components/angular/angular.min.js"></script>
+<script src="scripts/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="scripts/bower_components/angular-socket-io/socket.min.js"></script>
+<script src="scripts/_app.js"></script>
+<script src="scripts/_config.js"></script>
+<script src="scripts/services/session.js"></script>
+<script src="scripts/controllers/home.js"></script>
+<script src="scripts/models/session.js"></script>
+<script src="scripts/models/message-list.js"></script>
+</body>
+</html>

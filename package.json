@@ -1,0 +1,33 @@
+{
+  "name": "yodel-js",
+  "version": "0.0.0",
+  "description": "Fucking Awesome-ness",
+  "main": "app.js",
+  "dependencies": {
+    "buildify": "~0.4.0",
+    "MD5": "~1.2.1",
+    "express": "~4.10.2",
+    "express-useragent": "~0.1.2",
+    "fs-extra": "~0.12.0",
+    "ip": "~0.3.2",
+    "lodash": "~2.4.1",
+    "node-uuid": "~1.4.1",
+    "platform": "~1.2.0",
+    "socket.io": "~1.2.0",
+    "user-agent-parser": "~0.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamiemcl001/yodel-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamiemcl001/yodel-js/issues"
+  },
+  "homepage": "https://github.com/jamiemcl001/yodel-js"
+}
