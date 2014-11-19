@@ -1,15 +1,12 @@
 <p>
-    <button class="btn btn-success" ng-click="createSession()">
-        <span class="glyphicon glyphicon-plus-sign"></span>
-        New Session
-    </button>
+    <new-session></new-session>
 </p>
 <div class="panel panel-default" ng-repeat="session in sessions">
     <div class="panel-heading">
         <h1 class="panel-title">
             <a ui-sref="session-info({ id: session.id })">
                 <span class="logo-icon"
-                      ng-class="{ angular: session.bridgeType === 0, backbone: session.bridgeType === 1 }"></span>{{session.name}}
+                      ng-class="{ angular: session.bridgeType === 1, backbone: session.bridgeType === 2 }"></span>{{session.name}}
                 <span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
             </a>
         </h1>

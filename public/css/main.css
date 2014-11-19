@@ -8,10 +8,22 @@
     background-repeat: no-repeat;
 }
 
+.new-session .logo-icon {
+    opacity: 0.5;
+}
+
+.new-session .logo-icon.enabled {
+    opacity: 1;
+}
+
 .logo-icon.angular {
     background-image: url('../images/angular-icon.png');
 }
 
 .logo-icon.backbone {
     background-image: url('../images/backbone-icon.png');
+}
+
+.link {
+    cursor: pointer;
 }

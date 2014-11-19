@@ -42,8 +42,8 @@
                           ng-class="{ 'progress-bar-success': message.level === 'LOG',
                            'progress-bar-warning': message.level === 'WARN',
                            'progress-bar-danger': message.level === 'ERROR'}">
-                        {{message.level}}
-                    </span> - {{message.data[0]}} ({{message.timestamp}})
+                        {{message.level}} ({{message.actor}})
+                    </span> - {{message.arguments}} ({{message.timestamp}})
                 </div>
             </div>
         </div>

@@ -1,0 +1,26 @@
+<div class="new-session">
+    <p>
+        <button class="btn btn-success" ng-click="showCreateSession()">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+            New Session
+        </button>
+        <button class="btn btn-danger" ng-click="hideCreateSession()" ng-show="visible">
+            <span class="glyphicon glyphicon-minus-sign"></span>
+            Cancel
+        </button>
+    </p>
+    <div class="well" ng-show="visible">
+        <div>
+            <label>Name:</label>
+            <input type="text" ng-model="newSession.name" />
+        </div>
+        <div>
+            <label>Type:</label>
+            <span class="logo-icon angular link" ng-click="setBridgeType(1)"
+                  ng-class="{ enabled: newSession.bridgeType === 1 }"></span>
+            <span class="logo-icon backbone link" ng-click="setBridgeType(2)"
+                  ng-class="{ enabled: newSession.bridgeType === 2 }"></span>
+        </div>
+        <button class="btn btn-success" ng-click="createNewSession()">Create</button>
+    </div>
+</div>

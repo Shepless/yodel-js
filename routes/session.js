@@ -20,7 +20,7 @@ router.get('/session', function (req, res) {
 
 router.post('/session', function (req, res) {
     var session = SessionFactory.create(req.body.name, req.body.bridgeType);
-    BridgeFactory.create(session);
+    BridgeFactory.create(session, req.body.bridgeType);
     res.send(session);
 });
 

@@ -8,9 +8,13 @@ var path = require('path'),
     sessionRouter = require('./routes/session'),
     clientRouter = require('./routes/client'),
     partialRouter = require('./routes/partial'),
-    SocketFactory = require('./api/factories/socket-factory');
+    SocketFactory = require('./api/factories/socket-factory'),
+    BridgeFactory = require('./api/factories/bridge-factory');
 
 SocketFactory.init(server);
+BridgeFactory.register(0, 'default.js');
+BridgeFactory.register(1, 'angular.js');
+BridgeFactory.register(2, 'backbone.js');
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));

@@ -11,8 +11,8 @@
                     templateUrl: 'partials/dashboard.html',
                     controller: 'dashboard-controller',
                     resolve: {
-                        sessions: ['session-service', function(sessionService) {
-                            return sessionService.getAll();
+                        sessions: ['session-model', function(Session) {
+                            return Session.findAll();
                         }]
                     }
                 })
@@ -21,8 +21,8 @@
                     templateUrl: 'partials/session-info.html',
                     controller: 'session-info-controller',
                     resolve: {
-                        session: ['session-service', '$stateParams', function (sessionService, $stateParams) {
-                            return sessionService.get($stateParams.id);
+                        session: ['session-model', '$stateParams', function (Session, $stateParams) {
+                            return Session.find($stateParams.id);
                         }]
                     }
                 })

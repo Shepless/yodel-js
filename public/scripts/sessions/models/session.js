@@ -2,36 +2,35 @@
     'use strict';
 
     angular.module('yodel.sessions')
-        .factory('session-model', ['web-socket-factory', function (webSocketFactory) {
-            var SessionModel = function (json) {
-                var me = this;
+        .factory('session-model', ['web-socket-factory', 'DS', function (webSocketFactory, DS) {
+            return DS.defineResource({
+                name: 'Session',
+                afterCreate: function (resource, attrs, cb) {
+                    attrs.isConnected = false;
+                    attrs.socket = webSocketFactory.create(attrs.id);
 
-                angular.extend(me, json);
+                    attrs.socket.on('connect', function () {
+                        attrs.isConnected = true;
+                    });
 
-                me.isConnected = false;
-                me.socket = webSocketFactory.create(me.id);
+                    attrs.socket.on('disconnect', function () {
+                        attrs.isConnected = false;
+                    });
 
-                me.socket.on('connect', function () {
-                    me.isConnected = true;
-                });
+                    attrs.socket.on('local_message', function (message) {
+                        var client = attrs.clients.filter(function (client) {
+                            return (client.id === message.clientId);
+                        })[0];
 
-                me.socket.on('disconnect', function () {
-                    me.isConnected = false;
-                });
+                        client.messages.push(message);
+                    });
 
-                me.socket.on('local_message', function (message) {
-                    var client = me.clients.filter(function (client) {
-                        return (client.id === message.clientId);
-                    })[0];
+                    attrs.socket.on('new_client', function (message) {
+                        attrs.clients.push(message);
+                    });
 
-                    client.messages.push(message);
-                });
-
-                me.socket.on('new_client', function (message) {
-                    me.clients.push(message);
-                });
-            };
-
-            return SessionModel;
+                    cb(null, attrs);
+                }
+            });
         }]);
 })();
