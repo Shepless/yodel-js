@@ -19,7 +19,10 @@
                 Session ID: {{session.id}}
             </li>
             <li class="list-group-item">
-                Created on: {{session.created}}
+                Created: {{session.created}}
+            </li>
+            <li class="list-group-item">
+                Last Active: {{session.lastActive}}
             </li>
         </ul>
     </div>
@@ -29,13 +32,18 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title">
-                    {{client.userAgent.description}}
+                    <a ui-sref="client-info({ sessionId: session.id, clientId: client.id })">{{client.userAgent.description}}</a>
                     <span class="glyphicon glyphicon-pushpin pull-right"></span>
                 </h1>
             </div>
             <div class="panel-body">
                 <div ng-repeat="message in client.messages">
-                    <b>{{message.level}}</b> - {{message.data[0]}} ({{message.timestamp}})
+                    <span class="badge"
+                          ng-class="{ 'progress-bar-success': message.level === 'LOG',
+                           'progress-bar-warning': message.level === 'WARN',
+                           'progress-bar-danger': message.level === 'ERROR'}">
+                        {{message.level}}
+                    </span> - {{message.data[0]}} ({{message.timestamp}})
                 </div>
             </div>
         </div>

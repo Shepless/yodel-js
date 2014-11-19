@@ -1,0 +1,74 @@
+<p>
+    <button class="btn btn-success" ui-sref="session-info({ id: client.sessionId })">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        Back
+    </button>
+</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">
+            {{client.userAgent.description}}
+        </h1>
+    </div>
+    <div class="panel-body">
+        <h3><span class="glyphicon glyphicon-info-sign"></span> Information</h3>
+        <hr/>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Browser: {{client.userAgent.name}} ({{client.userAgent.version}})
+            </li>
+            <li class="list-group-item">
+                User Agent: {{client.userAgent.ua}}
+            </li>
+            <li class="list-group-item">
+                Operating System: {{client.userAgent.os.family}} {{client.userAgent.os.version}}
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    Log <span class="badge progress-bar-success pull-right">{{logs.length}}</span>
+                </h1>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="log in logs">
+                    {{log.data[0]}} ({{log.timestamp}})
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    Warnings <span class="badge progress-bar-warning pull-right">{{warnings.length}}</span>
+                </h1>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="warning in warnings">
+                    {{warning.data[0]}} ({{warning.timestamp}})
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    Errors <span class="badge progress-bar-danger pull-right">{{errors.length}}</span>
+                </h1>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="error in errors">
+                    {{error.data[0]}} ({{error.timestamp}})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

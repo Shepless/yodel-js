@@ -6,10 +6,6 @@ var path = require('path'),
     SessionFactory = require('../api/factories/session-factory'),
     BridgeFactory = require('../api/factories/bridge-factory');
 
-router.get('/', function(req, res) {
-    res.render('index');
-});
-
 router.get('/sessions/:id', function (req, res) {
     res.sendFile(req.params.id, { root: './.sessions/' });
 });

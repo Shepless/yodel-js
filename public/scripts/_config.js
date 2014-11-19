@@ -26,5 +26,15 @@
                         }]
                     }
                 })
+                .state('client-info', {
+                    url: '/session/:sessionId/client/:clientId',
+                    templateUrl: 'partials/client-info.html',
+                    controller: 'client-info-controller',
+                    resolve: {
+                        client: ['client-service', '$stateParams', function (clientService, $stateParams) {
+                            return clientService.get($stateParams.sessionId, $stateParams.clientId);
+                        }]
+                    }
+                })
         }]);
 })();
