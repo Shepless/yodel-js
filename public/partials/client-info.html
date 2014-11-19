@@ -15,6 +15,9 @@
         <hr/>
         <ul class="list-group">
             <li class="list-group-item">
+                 <span class="badge pull-left">{{client.messages.length}}</span> Messages
+            </li>
+            <li class="list-group-item">
                 Browser: {{client.userAgent.name}} ({{client.userAgent.version}})
             </li>
             <li class="list-group-item">
@@ -31,7 +34,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title">
-                    Log <span class="badge progress-bar-success pull-right">{{logs.length}}</span>
+                    Logs <span class="badge progress-bar-success pull-right">{{logs.length}}</span>
                 </h1>
             </div>
             <div class="panel-body">

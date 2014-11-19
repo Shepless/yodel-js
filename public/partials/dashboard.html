@@ -45,6 +45,7 @@
                     <a ui-sref="client-info({ sessionId: session.id, clientId: client.id })"
                        class="list-group-item"
                        ng-repeat="client in session.clients">
+                        <span class="glyphicon glyphicon-info-sign"></span>
                         {{client.userAgent.description}} ({{client.address}})
                         <span class="badge alert-success">{{client.messages.length}} message(s)</span>
                     </a>
