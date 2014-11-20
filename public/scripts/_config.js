@@ -8,17 +8,17 @@
             $stateProvider
                 .state('dashboard', {
                     url: '/',
-                    templateUrl: 'partials/dashboard.html',
+                    templateUrl: 'partials/dashboard/dashboard.html',
                     controller: 'dashboard-controller',
                     resolve: {
-                        sessions: ['session-model', function(Session) {
+                        sessions: ['$q', 'session-model', function($q, Session) {
                             return Session.findAll();
                         }]
                     }
                 })
                 .state('session-info', {
                     url: '/session/:id',
-                    templateUrl: 'partials/session-info.html',
+                    templateUrl: 'partials/session/session-info.html',
                     controller: 'session-info-controller',
                     resolve: {
                         session: ['session-model', '$stateParams', function (Session, $stateParams) {
@@ -28,11 +28,11 @@
                 })
                 .state('client-info', {
                     url: '/session/:sessionId/client/:clientId',
-                    templateUrl: 'partials/client-info.html',
+                    templateUrl: 'partials/client/client-info.html',
                     controller: 'client-info-controller',
                     resolve: {
-                        client: ['client-service', '$stateParams', function (clientService, $stateParams) {
-                            return clientService.get($stateParams.sessionId, $stateParams.clientId);
+                        client: ['client-model', '$stateParams', function (Client, $stateParams) {
+                            return Client.find($stateParams.clientId);
                         }]
                     }
                 })

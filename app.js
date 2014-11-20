@@ -5,16 +5,17 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     app = express(),
     server = require('http').Server(app),
-    sessionRouter = require('./routes/session'),
-    clientRouter = require('./routes/client'),
-    partialRouter = require('./routes/partial'),
+    sessionRouter = require('./api/routes/session'),
+    clientRouter = require('./api/routes/client'),
+    partialRouter = require('./api/routes/partial'),
     SocketFactory = require('./api/factories/socket-factory'),
-    BridgeFactory = require('./api/factories/bridge-factory');
+    BridgeFactory = require('./api/factories/bridge-factory'),
+    DefaultBridge = require('./api/models/bridge'),
+    AngularBridge = require('./api/models/angular-bridge');
 
 SocketFactory.init(server);
-BridgeFactory.register(0, 'default.js');
-BridgeFactory.register(1, 'angular.js');
-BridgeFactory.register(2, 'backbone.js');
+BridgeFactory.register(0, DefaultBridge);
+BridgeFactory.register(1, AngularBridge);
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));

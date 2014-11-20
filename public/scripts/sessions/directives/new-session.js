@@ -6,7 +6,7 @@
             return {
                 restrict: 'E',
                 scope: true,
-                templateUrl: 'partials/new-session.html',
+                templateUrl: 'partials/session/new-session.html',
                 link: function ($scope) {
                     $scope.visible = false;
 

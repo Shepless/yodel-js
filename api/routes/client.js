@@ -3,7 +3,7 @@
 var path = require('path'),
     express = require('express'),
     router = express.Router(),
-    SessionFactory = require('../api/factories/session-factory');
+    SessionFactory = require('../factories/session-factory');
 
 router.get('/session/:sessionId/client/:clientId', function (req, res) {
     var session = SessionFactory.get(req.params.sessionId);
