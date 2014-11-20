@@ -2,19 +2,29 @@
     'use strict';
 
     angular.module('yodel.clients')
-        .controller('client-info-controller', ['$scope', 'client', function ($scope, client) {
-            $scope.client = client;
+        .controller('client-info-controller', ['$scope', '$stateParams', 'client-model', 'message-model',
+            function ($scope, $stateParams, Client, Message) {
+                Client.bindOne($scope, 'client', $stateParams.clientId);
 
-            $scope.logs = client.messages.filter(function (message) {
-                return (message.level == 'LOG');
-            });
+                Message.bindAll($scope, 'logs', {
+                    where: {
+                        clientId: $stateParams.clientId,
+                        level: 'LOG'
+                    }
+                });
 
-            $scope.warnings = client.messages.filter(function (message) {
-                return (message.level == 'WARN');
-            });
+                Message.bindAll($scope, 'warnings', {
+                    where: {
+                        clientId: $stateParams.clientId,
+                        level: 'WARN'
+                    }
+                });
 
-            $scope.errors = client.messages.filter(function (message) {
-                return (message.level == 'ERROR');
-            });
-        }]);
+                Message.bindAll($scope, 'errors', {
+                    where: {
+                        clientId: $stateParams.clientId,
+                        level: 'ERROR'
+                    }
+                });
+            }]);
 })();

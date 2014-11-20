@@ -37,7 +37,7 @@
                 </h1>
             </div>
             <div class="panel-body">
-                <div ng-repeat="message in client.messages">
+                <div ng-repeat="message in client.messages | orderBy:'timestamp':true">
                     <span class="badge"
                           ng-class="{ 'progress-bar-success': message.level === 'LOG',
                            'progress-bar-warning': message.level === 'WARN',

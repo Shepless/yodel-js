@@ -13,7 +13,7 @@
                         }
                     }
                 },
-                afterInject: function (resource, attrs) {
+                beforeInject: function (resource, attrs) {
                     attrs.isConnected = false;
                     attrs.socket = webSocketFactory.create(attrs.id);
 
@@ -25,17 +25,9 @@
                         attrs.isConnected = false;
                     });
 
-//                    attrs.socket.on('local_message', function (message) {
-//                        var client = attrs.clients.filter(function (client) {
-//                            return (client.id === message.clientId);
-//                        })[0];
-//
-//                        client.messages.push(message);
-//                    });
-
                     attrs.socket.on('new_client', function (client) {
                         Client.inject(client, {
-                            findBelongsTo: true
+                            linkInverse: true
                         });
                     });
                 }

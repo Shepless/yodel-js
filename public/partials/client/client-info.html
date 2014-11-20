@@ -39,7 +39,7 @@
             </div>
             <div class="panel-body">
                 <div ng-repeat="log in logs">
-                    {{log.data[0]}} ({{log.timestamp}})
+                    {{log.arguments[0]}} ({{log.timestamp}})
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="panel-body">
                 <div ng-repeat="warning in warnings">
-                    {{warning.data[0]}} ({{warning.timestamp}})
+                    {{warning.arguments[0]}} ({{warning.timestamp}})
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="panel-body">
                 <div ng-repeat="error in errors">
-                    {{error.data[0]}} ({{error.timestamp}})
+                    {{error.arguments[0]}} ({{error.timestamp}})
                 </div>
             </div>
         </div>

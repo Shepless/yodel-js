@@ -2,7 +2,8 @@
 
 var _ = require('lodash'),
     uuid = require('node-uuid'),
-    platform = require('platform');
+    platform = require('platform'),
+    Message = require('./message');
 
 var Client = function (sessionId, socketRequest) {
     this.sessionId = sessionId;
@@ -12,17 +13,14 @@ var Client = function (sessionId, socketRequest) {
     this.messages = [];
 };
 
-Client.prototype.addMessage = function(message) {
+Client.prototype.addMessage = function(data) {
     var me = this;
 
-    var newMessage = _.extend(message, {
-        clientId: me.id,
-        timestamp: new Date().toString()
-    });
+    var message = new Message(data.clientId, data);
 
-    me.messages.unshift(newMessage);
+    me.messages.unshift(message);
 
-    return newMessage;
+    return message;
 };
 
 module.exports = Client;
