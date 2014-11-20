@@ -13,7 +13,7 @@
                         }
                     }
                 },
-                afterCreate: function (resource, attrs, cb) {
+                afterInject: function (resource, attrs) {
                     attrs.isConnected = false;
                     attrs.socket = webSocketFactory.create(attrs.id);
 
@@ -34,10 +34,10 @@
 //                    });
 
                     attrs.socket.on('new_client', function (client) {
-                        Client.inject(client);
+                        Client.inject(client, {
+                            findBelongsTo: true
+                        });
                     });
-
-                    cb(null, attrs);
                 }
             });
         }]);

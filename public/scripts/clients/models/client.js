@@ -12,12 +12,6 @@
                             localKey: 'sessionId',
                             parent: true
                         }
-                    },
-                    hasMany: {
-                        message: {
-                            localField: 'messages',
-                            foreignKey: 'clientId'
-                        }
                     }
                 },
                 afterCreate: function (resource, attrs, cb) {

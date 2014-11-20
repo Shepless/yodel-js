@@ -31,8 +31,9 @@
                     templateUrl: 'partials/client/client-info.html',
                     controller: 'client-info-controller',
                     resolve: {
-                        client: ['client-model', '$stateParams', function (Client, $stateParams) {
-                            return Client.find($stateParams.clientId);
+                        client: ['session-model', 'client-model', '$stateParams', function (Session, Client, $stateParams) {
+                            return Session.find($stateParams.sessionId)
+                                .then(Client.find.bind(Client, $stateParams.clientId));
                         }]
                     }
                 })
