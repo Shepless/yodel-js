@@ -5,14 +5,16 @@ var uuid = require('node-uuid'),
     SocketFactory = require('../factories/socket-factory'),
     Client = require('./client');
 
-function Session () {
+function Session(name, bridgeType) {
     var me = this;
 
     me.id = uuid.v4();
+    me.name = name;
     me.port = 3000;
     me.serverIp = ip.address();
     me.created = new Date().toString();
     me.lastActive = me.created;
+    me.bridgeType = bridgeType;
     me.clients = [];
 
     var socket = SocketFactory.create(me.id);
@@ -24,6 +26,7 @@ function Session () {
         if (isClient && !clientId) {
             var newClient = new Client(me.id, socketInstance.request);
             me.clients.push(newClient);
+            console.log('pushing new client....', newClient.id);
             socket.emit('new_client', newClient);
         }
 

@@ -8,21 +8,32 @@
             $stateProvider
                 .state('dashboard', {
                     url: '/',
-                    templateUrl: 'partials/dashboard.html',
+                    templateUrl: 'partials/dashboard/dashboard.html',
                     controller: 'dashboard-controller',
                     resolve: {
-                        sessions: ['session-service', function(sessionService) {
-                            return sessionService.getAll();
+                        sessions: ['$q', 'session-model', function($q, Session) {
+                            return Session.findAll();
                         }]
                     }
                 })
                 .state('session-info', {
                     url: '/session/:id',
-                    templateUrl: 'partials/session-info.html',
+                    templateUrl: 'partials/session/session-info.html',
                     controller: 'session-info-controller',
                     resolve: {
-                        session: ['session-service', '$stateParams', function (sessionService, $stateParams) {
-                            return sessionService.get($stateParams.id);
+                        session: ['session-model', '$stateParams', function (Session, $stateParams) {
+                            return Session.find($stateParams.id);
+                        }]
+                    }
+                })
+                .state('client-info', {
+                    url: '/session/:sessionId/client/:clientId',
+                    templateUrl: 'partials/client/client-info.html',
+                    controller: 'client-info-controller',
+                    resolve: {
+                        client: ['session-model', 'client-model', '$stateParams', function (Session, Client, $stateParams) {
+                            return Session.find($stateParams.sessionId)
+                                .then(Client.find.bind(Client, $stateParams.clientId));
                         }]
                     }
                 })

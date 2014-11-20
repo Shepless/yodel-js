@@ -2,36 +2,35 @@
     'use strict';
 
     angular.module('yodel.sessions')
-        .factory('session-model', ['web-socket-factory', function (webSocketFactory) {
-            var SessionModel = function (json) {
-                var me = this;
+        .factory('session-model', ['web-socket-factory', 'DS', 'client-model', function (webSocketFactory, DS, Client) {
+            return DS.defineResource({
+                name: 'session',
+                relations: {
+                    hasMany: {
+                        client: {
+                            localField: 'clients',
+                            foreignKey: 'sessionId'
+                        }
+                    }
+                },
+                beforeInject: function (resource, attrs) {
+                    attrs.isConnected = false;
+                    attrs.socket = webSocketFactory.create(attrs.id);
 
-                angular.extend(me, json);
+                    attrs.socket.on('connect', function () {
+                        attrs.isConnected = true;
+                    });
 
-                me.isConnected = false;
-                me.socket = webSocketFactory.create(me.id);
+                    attrs.socket.on('disconnect', function () {
+                        attrs.isConnected = false;
+                    });
 
-                me.socket.on('connect', function () {
-                    me.isConnected = true;
-                });
-
-                me.socket.on('disconnect', function () {
-                    me.isConnected = false;
-                });
-
-                me.socket.on('local_message', function (message) {
-                    var client = me.clients.filter(function (client) {
-                        return (client.id === message.clientId);
-                    })[0];
-
-                    client.messages.push(message);
-                });
-
-                me.socket.on('new_client', function (message) {
-                    me.clients.push(message);
-                });
-            };
-
-            return SessionModel;
+                    attrs.socket.on('new_client', function (client) {
+                        Client.inject(client, {
+                            linkInverse: true
+                        });
+                    });
+                }
+            });
         }]);
 })();

@@ -1,25 +1,18 @@
 'use strict';
 
-var path = require('path'),
-    util = require('util'),
-    buildify = require('buildify');
+var types = {};
 
 module.exports = {
-    create: function (session) {
-        var socketIoClientPath = 'public/scripts/bower_components/socket.io-client/socket.io.js',
-            bridgePath = 'api/bridge-templates/default.js',
-            outputFilePath = path.normalize(util.format('.sessions/%s.js', session.id));
+    register: function (type, Bridge) {
+        types[type] = Bridge;
+    },
+    create: function (session, data) {
+        var Bridge = types[data.bridgeType];
 
-        buildify(process.cwd())
-            .concat([socketIoClientPath, bridgePath])
-            .perform(function (content) {
-                return content
-                    .replace('{{serverIp}}', session.serverIp)
-                    .replace('{{port}}', session.port)
-                    .replace('{{sessionId}}', session.id);
-            })
-            .save(outputFilePath);
+        if (!Bridge) {
+            throw new Error('Cannot find bridge type ' + data.bridgeType);
+        }
 
-        return outputFilePath;
+        return new Bridge(session.id, session.serverIp, session.port, data);
     }
 };

@@ -4,8 +4,8 @@ var Session = require('../models/session'),
     sessions = [];
 
 module.exports = {
-    create: function (useragent, ip) {
-        var session = new Session(useragent, ip);
+    create: function (name, bridgeType) {
+        var session = new Session(name, bridgeType);
 
         sessions.push(session);
 

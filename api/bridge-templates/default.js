@@ -5,8 +5,6 @@
         bridge,
         clientId = window.localStorage.getItem(sessionId);
 
-    debugger;
-
     if (clientId) {
         bridge = io('http://' + serverIp + ':' + port + '/' + sessionId,
             { query: 'isClient=true&clientId=' + clientId });
@@ -21,8 +19,6 @@
     });
 
     bridge.connect();
-
-    window.foo = bridge;
 
     console.log = function () {
         bridge.emit('client_message', {clientId: clientId, data: arguments, level: 'LOG'});
