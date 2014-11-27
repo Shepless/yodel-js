@@ -1,25 +1,37 @@
 # yodel-js
 ### Installation
-1. Clone the repository
-2. Install node packages:
+- Clone the repository
+- Install node packages:
 ```
 npm install
 ```
-3. Install bower packages:
+- Install bower packages:
 ```
 bower install
 ```
-4. Run the app:
+- Run the app:
 ```
 node app
 ```
 
 ### Roadmap
-#### Version 1
-- Bridge types
+#### Version 0.0.9 (BETA)
+- Authentication model
+- Pre-defined Bridge types (e.g. Angular, Backbone, Ember, Knockout, Vanilla): top 2, allow voting to determine the next batch for V1
 - No data persistance
-- Allow paid data pushing to client data storage
-- 
+- Max sessions = 1
+- Max clients = 5
+- Unlimited messages
+- Start social media campaigning (blogs, twitter, facebook, NE Bytes, talks, DailyJS, IDisposable, Shiggs @ Work, Ryans Pager)
+
+#### Version 1
+- How do we milk this potential cash cow?
+- Restrict usage based on pricing model (concurrent connections, sessions, users/organisations, messages)
+- Allow data pushing to client data storage (for a nominal fee)
+
+#### Version 2
+- Issue tracker integration
+- Hosted data persistance
 
 ### Mission Statement
 Debugging
