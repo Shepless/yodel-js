@@ -1,4 +1,26 @@
 # yodel-js
+### Installation
+1. Clone the repository
+2. Install node packages:
+```
+npm install
+```
+3. Install bower packages:
+```
+bower install
+```
+4. Run the app:
+```
+node app
+```
+
+### Roadmap
+#### Version 1
+- Bridge types
+- No data persistance
+- Allow paid data pushing to client data storage
+- 
+
 ### Mission Statement
 Debugging
 Legacy
